@@ -14,10 +14,13 @@
   },
   "esquinas": "suaves",
   "portada": {
+    "badge": "⭐ 100% Pura Fruta Natural",
     "titulo": "Marcianos de pura fruta",
-    "subtitulo": "Cuenta en una o dos líneas qué vendes y por qué es especial.",
+    "subtitulo": "Refrescantes, deliciosos y preparados artesanalmente con fruta fresca seleccionada.",
+    "productoDestacado": "Marciano de Fresa",
     "imagen": "productos/producto-1.svg",
-    "textoBoton": "Ver todos los productos"
+    "textoBoton": "Ver productos",
+    "textoBotonSecundario": "Pedir por WhatsApp"
   },
   "nosotros": {
     "titulo": "Quiénes somos",

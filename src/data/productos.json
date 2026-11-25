@@ -1,9 +1,11 @@
 [
   {
     "nombre": "Marciano de Fresa",
-    "descripcion": "Aqui puedes colocar la frase importante",
+    "descripcion": "Elaborado con fresas seleccionadas, refrescante y con el dulzor exacto.",
     "precio": 2.5,
-    "imagen": "productos/producto-1.svg"
+    "imagen": "productos/producto-1.svg",
+    "etiqueta": "Más vendido",
+    "destacado": true
   },
   {
     "nombre": "Nombre del producto 2",

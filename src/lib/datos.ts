@@ -35,10 +35,13 @@ const esquemaMarca = z.object({
     errorMap: () => ({ message: 'Usa una de estas palabras: rectas, suaves o redondas' }),
   }),
   portada: z.object({
-    titulo:      z.string().min(3, 'Es muy corto').max(70, 'Máximo 70 caracteres'),
-    subtitulo:   z.string().max(160, 'Máximo 160 caracteres'),
-    imagen:      z.string().min(1, 'Escribe el nombre del archivo de la imagen'),
-    textoBoton:  z.string().min(1, 'No puede estar vacío').max(25, 'Máximo 25 caracteres'),
+    titulo:               z.string().min(3, 'Es muy corto').max(70, 'Máximo 70 caracteres'),
+    subtitulo:            z.string().max(160, 'Máximo 160 caracteres'),
+    imagen:               z.string().min(1, 'Escribe el nombre del archivo de la imagen').optional(),
+    textoBoton:           z.string().min(1, 'No puede estar vacío').max(25, 'Máximo 25 caracteres'),
+    textoBotonSecundario: z.string().max(30, 'Máximo 30 caracteres').optional(),
+    badge:                z.string().max(40, 'Máximo 40 caracteres').optional(),
+    productoDestacado:    z.string().max(50, 'Máximo 50 caracteres').optional(),
   }),
   nosotros: z.object({
     titulo: z.string().min(2, 'Es muy corto').max(40, 'Máximo 40 caracteres'),
@@ -66,6 +69,7 @@ const esquemaProductos = z
       precio:      z.number().positive('El precio debe ser mayor que 0'),
       imagen:      z.string().min(1, 'Escribe el nombre del archivo de la imagen'),
       etiqueta:    z.string().max(20, 'Máximo 20 caracteres').optional(),
+      destacado:   z.boolean().optional(),
     })
   )
   .min(1, 'Agrega al menos un producto')
@@ -115,8 +119,10 @@ function verificarImagen(ruta: string, donde: string): void {
 export const marca    = validar(esquemaMarca,      marcaCruda,      'marca.json');
 export const productos = validar(esquemaProductos, productosCrudos, 'productos.json');
 
-verificarImagen(marca.logo,           'logo en marca.json');
-verificarImagen(marca.portada.imagen, 'imagen de la portada en marca.json');
+verificarImagen(marca.logo, 'logo en marca.json');
+if (marca.portada.imagen) {
+  verificarImagen(marca.portada.imagen, 'imagen de la portada en marca.json');
+}
 productos.forEach((p, i) =>
   verificarImagen(p.imagen, `producto n.º ${i + 1} en productos.json`)
 );

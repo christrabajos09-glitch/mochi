@@ -1,14 +1,44 @@
 ---
 import Base from "../layouts/Base.astro";
-import { marca, productos, url, precio, enlaceWhatsApp } from "../lib/datos";
+import {
+  marca,
+  productos,
+  url,
+  precio,
+  enlaceWhatsApp,
+  type Producto,
+} from "../lib/datos";
 
 const { portada, nosotros, contacto } = marca;
 const whatsappGeneral = enlaceWhatsApp(contacto.whatsapp, contacto.mensaje);
+
 const pedir = (nombre: string, valor: number) =>
   enlaceWhatsApp(
     contacto.whatsapp,
     `Hola, quiero pedir: ${nombre} (${precio(valor)})`,
   );
+
+// ── Producto destacado para la portada ────────────────────────
+// 1. Busca por coincidencia con portada.productoDestacado (en marca.json)
+// 2. O busca un producto con "destacado": true (en productos.json)
+const productoDestacado: Producto | undefined =
+  (portada.productoDestacado
+    ? productos.find(
+        (p) =>
+          p.nombre.toLowerCase().trim() ===
+          portada.productoDestacado?.toLowerCase().trim(),
+      )
+    : undefined) ||
+  productos.find((p) => p.destacado) ||
+  undefined;
+
+// Imagen final de la portada:
+// Usa la del producto destacado, o la de portada.imagen, o la del primer producto
+const imagenPortada =
+  productoDestacado?.imagen ||
+  portada.imagen ||
+  productos[0]?.imagen ||
+  marca.logo;
 ---
 
 <Base
@@ -51,21 +81,64 @@ const pedir = (nombre: string, valor: number) =>
     <section class="portada">
       <div class="contenedor">
         <div class="portada-texto">
+          {portada.badge && <span class="portada-badge">{portada.badge}</span>}
           <h1>{portada.titulo}</h1>
           <p>{portada.subtitulo}</p>
-          <a class="boton" href="#productos">
-            {portada.textoBoton}
-          </a>
+
+          <div class="portada-acciones">
+            <a class="boton" href="#productos">
+              {portada.textoBoton}
+            </a>
+            <a
+              class="boton boton-borde"
+              href={whatsappGeneral}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {portada.textoBotonSecundario || "Pedir por WhatsApp"}
+            </a>
+          </div>
+
+          <!-- Micro-beneficios de confianza -->
+          <div class="portada-puntos">
+            <span>✨ 100% Artesanal</span>
+            <span>💬 Atención rápida</span>
+            <span>⭐ Calidad garantizada</span>
+          </div>
         </div>
+
         <div class="portada-imagen">
           <!-- fetchpriority="high": la imagen principal se carga primero (mejor LCP) -->
           <img
-            src={url(portada.imagen)}
-            alt={`Imagen de portada de ${marca.nombre}`}
+            src={url(imagenPortada)}
+            alt={productoDestacado ? productoDestacado.nombre : `Imagen de portada de ${marca.nombre}`}
             width="800"
             height="600"
             fetchpriority="high"
           />
+
+          <!-- Tarjeta flotante interactiva con el producto destacado -->
+          {productoDestacado && (
+            <div class="tarjeta-destacado">
+              <span class="tarjeta-destacado-icono" aria-hidden="true">⭐</span>
+              <div class="tarjeta-destacado-info">
+                <span class="tarjeta-destacado-etiqueta">
+                  {productoDestacado.etiqueta || "Producto Estrella"}
+                </span>
+                <strong class="tarjeta-destacado-nombre">{productoDestacado.nombre}</strong>
+                <span class="tarjeta-destacado-precio">{precio(productoDestacado.precio)}</span>
+              </div>
+              <a
+                class="tarjeta-destacado-btn"
+                href={pedir(productoDestacado.nombre, productoDestacado.precio)}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`Pedir ${productoDestacado.nombre} por WhatsApp`}
+              >
+                Pedir este ➔
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </section>
