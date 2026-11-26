@@ -32,7 +32,7 @@ const enlaceOpcional = z.union([
 
 // ── Esquema de marca.json ────────────────────────────────────
 const esquemaMarca = z.object({
-  nombre: z.string().min(2, "Es muy corto").max(40, "Máximo 40 caracteres"),
+  nombre: z.string().min(0, "Es muy corto").max(40, "Máximo 40 caracteres"),
   eslogan: z.string().max(80, "Máximo 80 caracteres"),
   logo: z.string().min(1, "Escribe el nombre del archivo del logo"),
   colores: z.object({
