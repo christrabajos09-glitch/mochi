@@ -213,8 +213,9 @@ const imagenPortada =
         >
           Escríbenos por WhatsApp
         </a>
-        {(contacto.instagram || contacto.facebook) && (
+        {(contacto.instagram || contacto.facebook || contacto.tiktok) && (
           <p class="redes">
+            <span>Síguenos en</span>
             {contacto.instagram && (
               <a
                 href={contacto.instagram}
@@ -231,6 +232,15 @@ const imagenPortada =
                 rel="noopener noreferrer"
               >
                 Facebook
+              </a>
+            )}
+            {contacto.tiktok && (
+              <a
+                href={contacto.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src="logo-tiktok.avif" width="30" alt="TikTok" />
               </a>
             )}
           </p>

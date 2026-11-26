@@ -1,9 +1,10 @@
 {
-  "nombre": "Mi Emprendimiento",
-  "eslogan": "Escribe aquí tu eslogan",
-  "logo": "logo.svg",
+  "nombre": "Mochianos",
+  "eslogan": "Tu antojo frío con la vibra de Mochi.",
+  "logo": "logo.png"
+ ,
   "colores": {
-    "principal": "#1F6F5B",
+    "principal": "#4A2511",
     "secundario": "#F4B942",
     "fondo": "#F6F8F7",
     "texto": "#1B2430"
@@ -15,27 +16,28 @@
   "esquinas": "suaves",
   "portada": {
     "badge": "⭐ 100% Pura Fruta Natural",
-    "titulo": "Marcianos de pura fruta",
-    "subtitulo": "Refrescantes, deliciosos y preparados artesanalmente con fruta fresca seleccionada.",
+    "titulo": "Marcianos de buena calidad",
+    "subtitulo": "Refrescantes, deliciosos y preparados con cariño con la calidad que se merece.",
     "productoDestacado": "Marciano de Fresa",
-    "imagen": "productos/producto-1.svg",
+    "imagen": "productos/producto final fresa.jpg",
     "textoBoton": "Ver productos",
     "textoBotonSecundario": "Pedir por WhatsApp"
   },
   "nosotros": {
     "titulo": "Quiénes somos",
-    "texto": "Somos estudiantes de secundaria y creamos este emprendimiento durante el curso de Educación para el Trabajo. Aquí cuentas cómo nació tu idea y qué problema resuelve.",
+    "texto": "Con Mochianos queremos ofrecer marcianos cremosos y bien hechos en una marca cercana, divertida y fácil de recordar, pensada para jóvenes y adultos. Buscamos conectar con quienes quieren refrescarse o darse un antojo rápido en su día a día, construyendo una identidad visual limpia y con personalidad de la mano de Mochi.",
     "puntos": [
       "Productos hechos con cuidado",
       "Precios justos",
       "Atención directa por WhatsApp"
     ]
   },
-  "contacto": {
-    "whatsapp": "51980528386",
+   "contacto": {
+    "whatsapp": "51951363009",
     "mensaje": "Hola, quiero más información sobre sus productos",
     "horario": "Lunes a viernes, de 3:00 p. m. a 6:00 p. m.",
-    "instagram": "https://instagram.com/solis",
-    "facebook": ""
+    "instagram": "",
+    "facebook": "",
+    "tiktok":"https://www.tiktok.com/@mochianos?is_from_webapp=1&sender_device=pc"
   }
 }
